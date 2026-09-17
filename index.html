@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>English Quest: Hiệp Sĩ Tiếng Anh Lớp 5</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Smartphone Mockup Wrapper -->
+  <div class="phone-wrapper">
+    
+    <!-- Phone Notch / Dynamic Island -->
+    <div class="phone-notch">
+      <div class="notch-camera"></div>
+      <div class="notch-sensor"></div>
+    </div>
+
+    <!-- Canvas Confetti for Celebrations -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Main Game App -->
+    <div id="app-container">
+      
+      <!-- ================= TOP HUD BAR ================= -->
+      <header class="top-hud">
+        <div class="player-profile">
+          <div class="hud-avatar" id="hud-avatar">
+            <!-- Populated by JS -->
+          </div>
+          <div class="player-info">
+            <span class="player-name" id="hud-player-name">Hiệp Sĩ Nhí</span>
+            <span class="player-level" id="hud-player-level">Lv. 1 🎓</span>
+          </div>
+        </div>
+
+        <div class="hud-resources">
+          <div class="resource-badge coin" title="Vàng tích lũy">
+            <span>🪙</span>
+            <span id="hud-coins">0</span>
+          </div>
+          <div class="resource-badge star" title="Sao đạt được">
+            <span>⭐</span>
+            <span id="hud-stars">0</span>
+          </div>
+        </div>
+
+        <div class="hud-controls">
+          <button class="btn-icon" id="btn-hud-map" title="Bản đồ ải">🗺️</button>
+          <button class="btn-icon" id="btn-hud-flashcards" title="Thẻ từ vựng Flashcard">🗂️</button>
+          <button class="btn-icon" id="btn-hud-handbook" title="Sổ tay ngữ pháp">📖</button>
+          <button class="btn-icon" id="btn-hud-bgm" title="Bật/Tắt nhạc nền BGM">🎵</button>
+          <button class="btn-icon" id="btn-hud-shop" title="Cửa hàng trang bị">🛒</button>
+          <button class="btn-icon" id="btn-hud-sound" title="Âm thanh hiệu ứng">🔊</button>
+        </div>
+      </header>
+
+      <!-- ================= SCREEN 1: WELCOME & CHARACTER SELECT ================= -->
+      <section class="screen active" id="screen-welcome">
+        <div class="welcome-container">
+          <div class="game-logo-badge">⚔️ Siêu Phẩm Game Tiếng Anh Lớp 5 🛡️</div>
+          <h1 class="game-title">ENGLISH QUEST<br><span style="font-size: 1.25rem; font-weight: 800;">HIỆP SĨ ANH NGỮ</span></h1>
+          <p class="game-subtitle">
+            Chinh phục 30 Ải Chiến Dịch qua 6 Chương Đại Học (Trọn bộ 20 Units SGK & Nâng Cao)!
+          </p>
+
+          <div class="hero-preview" id="hero-welcome-preview">
+            <svg viewBox="0 0 100 100" class="game-svg"><circle cx="50" cy="50" r="45" fill="#3B82F6"/><circle cx="50" cy="40" r="22" fill="#FFE0B2"/><rect x="35" y="25" width="30" height="15" rx="5" fill="#64748B"/><rect x="42" y="32" width="16" height="4" fill="#1E293B"/><path d="M30 65 Q50 85 70 65 L65 95 L35 95 Z" fill="#2563EB"/><circle cx="43" cy="42" r="3" fill="#1E293B"/><circle cx="57" cy="42" r="3" fill="#1E293B"/><path d="M46 50 Q50 54 54 50" stroke="#E11D48" stroke-width="2" fill="none"/><polygon points="50,5 60,25 40,25" fill="#F59E0B"/></svg>
+          </div>
+
+          <div class="character-select-box">
+            <label class="character-select-label">Chọn nhân vật của bạn:</label>
+            <div class="character-options">
+              <button class="char-opt-btn selected" data-char="knight" title="Chiến Binh Rồng">
+                <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#3B82F6"/><polygon points="50,5 60,25 40,25" fill="#F59E0B"/><circle cx="50" cy="40" r="20" fill="#FFE0B2"/></svg>
+              </button>
+              <button class="char-opt-btn" data-char="wizard" title="Pháp Sư Nhí">
+                <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#8B5CF6"/><polygon points="50,5 30,30 70,30" fill="#6D28D9"/><circle cx="50" cy="42" r="20" fill="#FFE0B2"/></svg>
+              </button>
+              <button class="char-opt-btn" data-char="archer" title="Xạ Thủ Rừng Xanh">
+                <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#10B981"/><path d="M30 25 C35 15 65 15 70 25 C70 35 30 35 30 25" fill="#047857"/><circle cx="42" cy="42" r="3" fill="#1E293B"/><circle cx="58" cy="42" r="3" fill="#1E293B"/><path d="M46 52 Q50 55 54 52" stroke="#E11D48" stroke-width="2" fill="none"/><path d="M32 68 Q50 80 68 68 L65 95 L35 95 Z" fill="#059669"/><path d="M75 30 Q90 50 75 70" stroke="#78350F" stroke-width="4" fill="none"/></svg>
+              </button>
+            </div>
+
+            <label class="character-select-label">Tên của bạn:</label>
+            <input type="text" id="player-name-input" class="name-input" value="Hiệp Sĩ Nhí" maxlength="15" placeholder="Nhập tên của bạn...">
+          </div>
+
+          <button class="btn-primary" id="btn-start-game" style="margin-top: 4px;">
+            🚀 BẮT ĐẦU HÀNH TRÌNH ⚔️
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= SCREEN 2: WORLD MAP ================= -->
+      <section class="screen" id="screen-map">
+        <div class="map-header">
+          <h2>🗺️ Bản Đồ 30 Ải Chiến Dịch</h2>
+          <p style="color: var(--text-muted); font-size: 0.75rem;">Chinh phục trọn bộ 6 Chương (20 Units SGK & Nâng Cao)</p>
+          
+          <!-- Chapter Selector Tabs -->
+          <div class="chapter-tabs-scroll" id="chapter-tabs-scroll">
+            <button class="chapter-tab-btn active" data-chapter="1">Chương I (Ải 1-5)</button>
+            <button class="chapter-tab-btn" data-chapter="2">Chương II (Ải 6-10)</button>
+            <button class="chapter-tab-btn" data-chapter="3">Chương III (Ải 11-15)</button>
+            <button class="chapter-tab-btn" data-chapter="4">Chương IV (Ải 16-20)</button>
+            <button class="chapter-tab-btn" data-chapter="5">Chương V (Ải 21-25)</button>
+            <button class="chapter-tab-btn" data-chapter="6">Chương VI (Ải 26-30)</button>
+          </div>
+
+          <div class="map-quick-nav">
+            <button class="btn-secondary" id="btn-quick-practice" style="font-size: 0.75rem;">
+              ⚡ Luyện Tập Nhanh
+            </button>
+            <button class="btn-secondary" onclick="questGame.showScreen('flashcards'); questGame.renderFlashcards();" style="font-size: 0.75rem;">
+              🗂️ Thẻ Flashcard
+            </button>
+          </div>
+        </div>
+
+        <div class="stages-list" id="stages-list">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </section>
+
+      <!-- ================= SCREEN 3: BATTLE / QUEST ================= -->
+      <section class="screen" id="screen-battle">
+        <div class="battle-arena">
+          <!-- Battle Top Bar -->
+          <div class="battle-header">
+            <span style="font-weight: 800; font-size: 0.82rem; color: #FFF;" id="battle-stage-name">Ải 1: Bản Làng & Địa Chỉ</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="combo-badge" id="combo-badge">🔥 COMBO x2!</span>
+              <span class="stage-progress-indicator" id="battle-progress">Câu 1 / 6</span>
+            </div>
+          </div>
+
+          <!-- Combat Field (Hero vs Monster) -->
+          <div class="battle-field">
+            <!-- Hero Box -->
+            <div class="combatant-card">
+              <div class="combatant-avatar-box" id="player-avatar-box">
+                <!-- Rendered by JS -->
+              </div>
+              <div class="combatant-name" id="player-name-display">Hiệp Sĩ Nhí</div>
+              <div class="hp-bar-container">
+                <div class="hp-label-row">
+                  <span>HP Hiệp Sĩ</span>
+                  <span id="player-hp-text">100/100</span>
+                </div>
+                <div class="hp-bar-track">
+                  <div class="hp-bar-fill" id="player-hp-bar" style="width: 100%;"></div>
+                </div>
+                <div class="mana-bar-track" title="Nộ Tuyệt Chiêu">
+                  <div class="mana-bar-fill" id="player-mana-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Monster Box -->
+            <div class="combatant-card">
+              <div class="combatant-avatar-box" id="monster-avatar-box">
+                <!-- Rendered by JS -->
+              </div>
+              <div class="combatant-name" id="monster-name-display" style="color: #F87171;">Quái Slime</div>
+              <div class="hp-bar-container">
+                <div class="hp-label-row">
+                  <span>HP Quái</span>
+                  <span id="monster-hp-text">100/100</span>
+                </div>
+                <div class="hp-bar-track">
+                  <div class="hp-bar-fill" id="monster-hp-bar" style="width: 100%; background: linear-gradient(90deg, #EF4444, #F87171);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Battle Inventory Toolbar -->
+          <div class="battle-inventory-bar">
+            <button class="item-slot-btn" id="btn-item-potion" title="Hồi phục 40 HP">🧪 Bình Máu (2)</button>
+            <button class="item-slot-btn" id="btn-item-shield" title="Chặn 1 đòn">🛡️ Khiên (1)</button>
+            <button class="item-slot-btn" id="btn-item-hint" title="Bỏ 1 đáp án sai">📜 Gợi Ý (1)</button>
+            <button class="item-slot-btn ultimate" id="btn-item-ultimate" title="Tung Tuyệt Chiêu Nộ khi đầy 100%" disabled>⚡ Nộ (0%)</button>
+          </div>
+
+          <!-- Question Card -->
+          <div class="question-card">
+            <div class="question-header-row">
+              <span class="question-title-badge" id="question-title">Nhìn hình và chọn từ:</span>
+              <button class="btn-speak" id="btn-speak" title="Nghe phát âm">
+                <span>🔊</span>
+                <span>Nghe</span>
+              </button>
+            </div>
+
+            <div class="question-content-box">
+              <div class="question-illustration" id="question-illustration">
+                <!-- SVG Illustration -->
+              </div>
+              <div class="question-text" id="question-text">
+                What do you do in the morning?
+              </div>
+            </div>
+
+            <!-- Options Container (Choice or Sentence Builder) -->
+            <div id="options-container">
+              <!-- Rendered by JS -->
+            </div>
+
+            <!-- Explanation Feedback -->
+            <div class="feedback-box" id="feedback-box">
+              <!-- Rendered by JS -->
+            </div>
+
+            <!-- Next Question Button -->
+            <div style="display: flex; justify-content: flex-end; margin-top: 4px;">
+              <button class="btn-primary" id="btn-next-question" style="display: none; padding: 8px 16px; width: auto;">
+                Tiếp Tục ⏩
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SCREEN 4: FLASHCARDS ================= -->
+      <section class="screen" id="screen-flashcards">
+        <div class="flashcards-container">
+          <div class="map-header">
+            <h2>🗂️ Thẻ Từ Vựng Flashcards</h2>
+            <p style="color: var(--text-muted); font-size: 0.75rem;">Chạm vào thẻ để nghe phát âm & xem nghĩa</p>
+          </div>
+
+          <div id="flashcards-deck-list" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Rendered dynamically by JS -->
+          </div>
+
+          <div style="display: flex; justify-content: center; margin-top: 8px;">
+            <button class="btn-secondary" onclick="questGame.showScreen('map')">
+              ⬅️ Quay Lại Bản Đồ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SCREEN 5: HANDBOOK ================= -->
+      <section class="screen" id="screen-handbook">
+        <div class="handbook-container">
+          <div class="map-header">
+            <h2>📖 Sổ Tay Ngữ Pháp Lớp 5</h2>
+            <p style="color: var(--text-muted); font-size: 0.75rem;">Tổng hợp công thức trọng tâm 20 Units</p>
+          </div>
+
+          <div id="handbook-content-list" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Rendered dynamically by JS -->
+          </div>
+
+          <div style="display: flex; justify-content: center; margin-top: 8px;">
+            <button class="btn-secondary" onclick="questGame.showScreen('map')">
+              ⬅️ Quay Lại Bản Đồ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SCREEN 6: SHOP ================= -->
+      <section class="screen" id="screen-shop">
+        <div class="shop-container">
+          <div class="map-header">
+            <h2>🛒 Cửa Hàng Trang Bị</h2>
+            <p style="color: var(--text-muted); font-size: 0.75rem;">Dùng Vàng mua thêm vật phẩm & trang phục!</p>
+          </div>
+
+          <div class="shop-grid" id="shop-grid">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div style="display: flex; justify-content: center; margin-top: 8px;">
+            <button class="btn-secondary" onclick="questGame.showScreen('map')">
+              ⬅️ Quay Lại Bản Đồ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= RESULT / VICTORY MODAL WITH LUCKY CHESTS ================= -->
+      <div class="modal-overlay" id="result-modal">
+        <div class="result-card">
+          <h2 class="result-title" id="result-title">🎉 CHIẾN THẮNG!</h2>
+          <div class="result-stars-row" id="result-stars-row">
+            <span class="star earned">★</span>
+            <span class="star earned">★</span>
+            <span class="star earned">★</span>
+          </div>
+          <p id="result-message" style="color: #CBD5E1; font-size: 0.85rem; line-height: 1.35;">
+            Tuyệt vời! Bạn đã xuất sắc đánh bại quái vật!
+          </p>
+          
+          <!-- Lucky Treasure Chests -->
+          <div style="font-weight: 800; font-size: 0.8rem; color: #FDE047; margin-top: 2px;">
+            🎁 Chọn 1 Rương May Mắn nhận thêm quà:
+          </div>
+          <div class="treasure-chests-row" id="chests-row">
+            <div class="chest-box" data-idx="1">🎁</div>
+            <div class="chest-box" data-idx="2">🎁</div>
+            <div class="chest-box" data-idx="3">🎁</div>
+          </div>
+
+          <div class="rewards-summary">
+            <div style="font-weight: 800; color: #FBBF24;" id="result-coins-earned">+35 Vàng 🪙</div>
+          </div>
+          <button class="btn-primary" id="btn-modal-continue" style="width: 100%; margin-top: 4px;">
+            Tiếp Tục Bản Đồ 🗺️
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
